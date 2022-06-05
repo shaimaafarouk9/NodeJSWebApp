@@ -12,21 +12,24 @@ app.use(express.static(path.join(__dirname, '/public/')));
 
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
-
-app.use('/products', productsRouter);
 app.use('/home', homeRouter);
-
-app.get('/Home', (req, res) => {
-  res.render('home', { title: 'Products' });
-  });
-  app.get('/products/:id', (req, res) => {
-    res.render('product', { title: 'Product' });
-  });
-
+app.use('/products', productsRouter);
 
 app.get('/', (req, res) => {
   res.redirect("/Home");
 });
+
+app.get('/Home', (req, res) => {
+  res.render('home', { title: 'Products' });
+  });
+
+app.get('/products', (req, res) => {
+    res.render('products', { title: 'Products' });
+    });
+    
+app.get('/products/:id', (req, res) => {
+    res.render('product', { title: 'Product' });
+  });
 
 
 
